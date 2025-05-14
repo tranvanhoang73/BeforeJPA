@@ -1,7 +1,5 @@
 
 package com.example.jpa.beforejpa;
-//update here AAAAA ok
-
 
 public class Book {
 
