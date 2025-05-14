@@ -4,7 +4,7 @@ package com.example.jpa.beforejpa;
 public class Book {
 
     public Book(String isbn, String title) {
-        this.isbn = isbn;//hhhhhhh
+        this.isbn = isbn;//hhhhhhh  pppppppppppppppppppppp
         this.title = title;// need update
     }
 
