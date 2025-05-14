@@ -1,6 +1,6 @@
 
 package com.example.jpa.beforejpa;
-//update here you
+
 public class Book {
 
     public Book(String isbn, String title) {
