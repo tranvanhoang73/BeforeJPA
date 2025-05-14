@@ -1,16 +1,16 @@
 
 package com.example.jpa.beforejpa;
-
+//update here
 public class Book {
 
     public Book(String isbn, String title) {
         this.isbn = isbn;
-        this.title = title;
+        this.title = title;// need update
     }
 
     @Override
     public String toString() {
-        return "Book{" + "isbn=" + isbn + ", title=" + title + '}';
+        return "Book{" + "isbn=" + isbn + ", title update=" + title + '}';
     }
 
     public void setIsbn(String isbn) {
