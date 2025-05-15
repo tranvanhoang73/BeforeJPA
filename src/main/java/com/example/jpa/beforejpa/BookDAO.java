@@ -15,7 +15,7 @@ public class BookDAO {
         int so =0;
         String sql =  "INSERT INTO `students`.`book` (`isbn`, `title`) VALUES (?, ?)";  
         try{
-            Connection1 cn = db.getConnection();// UPDATE HÊRE
+            Connection cn = db.getConnection();// UPDATE HÊRE
             PreparedStatement  pre = cn.prepareStatement(sql);
             pre.setString(1, b.getIsbn());
             pre.setString(2, b.getTitle());
