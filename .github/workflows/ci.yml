@@ -1,4 +1,4 @@
-name: Java CI for dev branch
+name: Java CI/CD for dev branch
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  build:
+  build_and_run:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,3 +22,8 @@ jobs:
 
       - name: 🧪 Build and test with Maven
         run: mvn clean install -DskipTests=false
+
+      - name: 🚀 Run Java Console App (CD step)
+        run: java -cp target/classes com.example.jpa.beforejpa.BeforeJPA
+
+
