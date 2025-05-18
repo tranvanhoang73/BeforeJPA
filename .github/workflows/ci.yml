@@ -10,6 +10,20 @@ jobs:
   build_and_run:
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: 123456789
+          MYSQL_DATABASE: students
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
@@ -20,11 +34,24 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
 
+      - name: Wait for MySQL to be ready
+        run: |
+          echo "Waiting for MySQL to start..."
+          sleep 30
+
+      - name: Install MySQL client
+        run: sudo apt-get update && sudo apt-get install -y mysql-client
+
+      - name: Create book table if not exists
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u root -p123456789 -e "CREATE TABLE IF NOT EXISTS students.book (isbn VARCHAR(20) PRIMARY KEY, title VARCHAR(25));"
+
       - name: Build with Maven
         run: mvn clean compile
 
       - name: Run Java Console App (CD step)
         run: java -cp target/classes com.example.jpa.beforejpa.BeforeJPA
+
 
 
 
