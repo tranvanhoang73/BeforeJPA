@@ -11,9 +11,9 @@ public class BeforeJPA {
 
     public static void main(String[] args) {
       System.out.println("Hello World you!");
-      BookDAO bd = new BookDAO();
+     // BookDAO bd = new BookDAO();
        // bd.addBook(new Book("12345678","XYZ"));
-      System.out.println( bd.getAbook("134").toString());
+     // System.out.println( bd.getAbook("134").toString());
 //        
 //     Dbconnection db = new Dbconnection();
 //     Connection cn = null;
