@@ -7,47 +7,24 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  build_and_deploy:
+  build_and_run:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: 123456789
-          MYSQL_DATABASE: students
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping -h localhost"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=5
-
     steps:
-      - name: 📥 Checkout source code
+      - name: Checkout source code
         uses: actions/checkout@v3
 
-      - name: ☕ Set up JDK 21
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
 
-      - name: ⏱️ Wait for MySQL to be ready
-        run: |
-          echo "Waiting for MySQL..."
-          sleep 30
+      - name: Build with Maven
+        run: mvn clean compile
 
-      - name: 🛠️ Create `book` table if not exists
-        run: |
-          sudo apt-get install -y mysql-client
-          mysql -h 127.0.0.1 -P 3306 -u root -p123456789 -e "CREATE TABLE IF NOT EXISTS students.book (isbn VARCHAR(20) PRIMARY KEY, title VARCHAR(255));"
-
-      - name: 🧪 Build and test with Maven
-        run: mvn clean install -DskipTests=false
-
-      - name: 🚀 Run Java Console App (CD step)
+      - name: Run Java Console App (CD step)
         run: java -cp target/classes com.example.jpa.beforejpa.BeforeJPA
+
 
 
