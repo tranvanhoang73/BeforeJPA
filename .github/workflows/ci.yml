@@ -50,7 +50,7 @@ jobs:
         run: mvn clean compile
 
       - name: Run Java Console App (CD step)
-        run: java -cp target/classes com.example.jpa.beforejpa.BeforeJPA
+        run: mvn exec:java -Dexec.mainClass="com.example.jpa.beforejpa.BeforeJPA"
 
 
 
