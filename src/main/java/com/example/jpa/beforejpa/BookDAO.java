@@ -12,7 +12,7 @@ public class BookDAO {
     Dbconnection db = new Dbconnection();   
     
     public int addBook(Book b){
-        int so =0;
+        int so =0;//update
         String sql =  "INSERT INTO `students`.`book` (`isbn`, `title`) VALUES (?, ?)";  
         try{
             Connection cn = db.getConnection();// UPDATE HÊRE
